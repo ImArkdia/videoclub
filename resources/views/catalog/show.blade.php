@@ -3,21 +3,21 @@
 @section('content')
     <div class="row">
         <div class="col-sm-4">
-            <img src="{{ $pelicula['poster'] }}" alt="" style="height: 400px">
+            <img src="{{ $pelicula->poster }}" alt="" style="height: 400px">
         </div>
         <div class="col-sm-8">
-            <div class="col-12"><h1>{{$pelicula['title']}}</h1></div>
-            <div class="col-12"><h3>Año: {{$pelicula['year']}}</h3></div>
-            <div class="col-12"><h3>Director: {{$pelicula['director']}}</h3></div>
-            <div class="col-12"><p class=""><span class="fw-bold">Resumen: </span>{{$pelicula['synopsis']}}</p></div>
-            <div class="col-12"><span class="fw-bold">Estado: </span>@if($pelicula['rented'] == true)
+            <div class="col-12"><h1>{{$pelicula->title}}</h1></div>
+            <div class="col-12"><h3>Año: {{$pelicula->year}}</h3></div>
+            <div class="col-12"><h3>Director: {{$pelicula->director}}</h3></div>
+            <div class="col-12"><p class=""><span class="fw-bold">Resumen: </span>{{$pelicula->synopsis}}</p></div>
+            <div class="col-12"><span class="fw-bold">Estado: </span>@if($pelicula->rented == true)
                                     <p>Película actualmente alquilada.</p>
                                     @else
                                     <p>Película disponible.</p>
                                     @endif
             </div>
             <div class="col-8 d-flex justify-content-between">
-                @if($pelicula['rented'] == false)
+                @if($pelicula->rented == false)
                 <div class="col-3"><button class="btn btn-primary">Alquilar película</button></div>
             @else    
                 <div class="col-3"><button class="btn btn-danger">Devolver película</button></div>

@@ -3,19 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Movie;
 
 class CatalogController extends Controller
 {
 
     public function getIndex(){
-        require 'array_peliculas.php';
+        $arrayPeliculas = Movie::all();
         return view('catalog.index', ['arrayPeliculas' => $arrayPeliculas]);
     }
 
     public function getShow($id){
-        require 'array_peliculas.php';
-        return view('catalog.show', array('pelicula' => $arrayPeliculas[$id], 'id' => $id));
+        try{
+            $arrayPeliculas = Movie::findOrFail($id);
+            return view('catalog.show', array('pelicula' => $arrayPeliculas, 'id' => $id));
+        }catch(Exception $e){
+            return $e;
+        }
     }
 
     public function getCreate(){
@@ -23,19 +27,21 @@ class CatalogController extends Controller
     }
 
     public function postCreate($pelicula){
-        require 'array_peliculas.php';
         $pelicula['rented'] = false;
         array_push($arrayPeliculas, $pelicula);
         return view('catalog.edit', array('insertado' => true));
     }
 
     public function getEdit($id){
-        require 'array_peliculas.php';
-        return view('catalog.edit', array('id' => $id, 'pelicula' => $arrayPeliculas[$id]));
+        try{
+            $arrayPeliculas = Movie::findOrFail($id);
+            return view('catalog.edit', array('pelicula' => $arrayPeliculas, 'id' => $id));
+        }catch(Exception $e){
+            return $e;
+        }
     }
 
     public function putEdit(Request $request){
-        require 'array_peliculas.php';
         /*
         $arrayPeliculas[$pelicula['id']]['title'] = $pelicula['title'];
         $arrayPeliculas[$pelicula['id']]['year'] = $pelicula['year'];
