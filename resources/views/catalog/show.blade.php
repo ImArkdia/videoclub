@@ -18,9 +18,9 @@
             </div>
             <div class="col-8 d-flex justify-content-between">
                 @if($pelicula->rented == false)
-                <div class="col-3"><button class="btn btn-primary">Alquilar película</button></div>
+                <div class="col-3"><a href="{{url('/catalog/alquilar/' . $id)}}"><button class="btn btn-primary">Alquilar película</button></a></div>
             @else    
-                <div class="col-3"><button class="btn btn-danger">Devolver película</button></div>
+                <div class="col-3"><a href="{{url('/catalog/devolver/' . $id)}}"><button class="btn btn-danger">Devolver película</button></a></div>
             @endif
             <div class="col-3"><a class="btn btn-warning" href="{{ url('/catalog/edit/' . $id ) }}" role="button">Editar película</a></div>
             <div class="col-3"><a class="btn btn-light" href="{{ url('/catalog' ) }}" role="button">Volver al listado</a></div>

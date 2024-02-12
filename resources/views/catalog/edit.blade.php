@@ -45,7 +45,9 @@
                     Modificar película
                 </button>
              </div>
-             
+             @if(@isset($editado))
+                  <div>No se ha podido editar</div>
+             @endif
             </form>
           </div>
        </div>
